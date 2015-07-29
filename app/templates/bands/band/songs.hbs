@@ -1,29 +1,25 @@
 <div class="row">
 	<div class="list-group songs">
-		{{#if songCreationStarted}}
+		{{#if canCreateSong}}
 			<div class="list-group-item">
-				{{input type="text" class="new-song" placeholder="New song" value=title}}
-				<button class="btn btn-primary btn-sm new-song-button"
-					disabled={{isAddButtonDisabled}}
-					{{action "createSong"}}>Add</button>
+				<form {{action "createSong" on="submit"}}>
+					{{input type="text" class="new-song" placeholder="New song" value=title}}
+					<button type="submit" class="btn btn-primary btn-sm new-song-button" disabled={{isAddButtonDisabled}}>Add</button>
+				</form>
 			</div>
 		{{/if}}
-		<li class="list-group-item">
-			{{input type="text" class="new-band" placeholder="New song" value=title}}
-			<button class="btn btn-primary btn-sm new-song-button" {{action "createSong"}} disabled={{isAddButtonDisabled}}>Add</button>
-		</li>
-		{{#each model as |song|}}
+		{{#each model.songs as |song|}}
 		<li class="list-group-item">
 			{{song.title}}
 			{{star-rating item=song rating=song.rating setAction="updateRating"}}
 		</li>
 		{{/each}}
-		{{#if noSongs}}
+		{{#unless canCreateSong}}
 			<div class="list-group-item empty-list">
 				<div class="empty-message">
 					There are no songs yet. Why don't you <a href="#" {{action "enableSongCreation"}}>create one?</a>
 				</div>
 			</div>
-		{{/if}}
+		{{/unless}}
 	</div>
 </div>

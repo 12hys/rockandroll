@@ -3,7 +3,7 @@ import Song from '../../../models/song';
 
 export default Ember.Route.extend({
 	model: function() {
-		return this.modelFor('bands.band').get('songs');
+		return this.modelFor('bands.band');
 	},
 	actions: {
 		createSong: function() {
