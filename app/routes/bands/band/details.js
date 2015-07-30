@@ -12,6 +12,10 @@ export default Ember.Route.extend({
 					transition.abort();
 				}
 			}
+		},
+		save: function() {
+			var band = this.get('controller').get('model');
+			return band.save();
 		}
 	}
 });
