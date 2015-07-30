@@ -40,6 +40,7 @@ var ledZeppelin = Band.create({
 });
 var pearlJam = Band.create({
 	name: 'Pearl Jam',
+	description: 'Pearl Jam is one of the worst bands ever',
 	songs: [daughter, yellowLedbetter]
 });
 var fooFighters = Band.create({
@@ -54,6 +55,9 @@ export default Ember.Route.extend({
 		return bands;
 	},
 	actions: {
+		didTransition: function() {
+			Ember.$(document).attr('title', 'Bands - Rock & Roll');
+		},
 		createBand: function() {
 			var name = this.get('controller').get('name');
 			var band = Band.create({
